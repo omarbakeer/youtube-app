@@ -1,0 +1,38 @@
+$yt-icon-dimensions: 2.5rem;
+$search-icon-dimensions: 1.5rem;
+$mobile-icons-color:  white;
+
+@mixin icon-dim-and-color($dim) {
+  outline: 0;
+  fill: $mobile-icons-color;
+  width: $dim;
+  height: $dim;
+}
+
+.head-bar {
+  background-color: #e62117;
+  color: #fff;
+  padding: .5rem;
+  @extend .head-bar__icon-title-container;
+}
+
+.head-bar__icon-title-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head-bar__yt-icon {
+  margin-left: .5rem;
+  @include icon-dim-and-color($yt-icon-dimensions)
+}
+
+.head-bar__title {
+  margin-left: .5rem;
+  font-size: 1.1rem;
+}
+
+.head-bar__search-icon {
+  margin-right: .5rem;
+  @include icon-dim-and-color($search-icon-dimensions)
+}
