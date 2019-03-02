@@ -7,16 +7,16 @@ export default class Header extends Component {
   render() {
     return (
       <header className="head-bar">
-        <div className="head-bar__icon-title-container">
-          <a href="#!" className="head-bar__yt-icon">
-            <YTMobileIcon />
-          </a>
+        <a href="#!" className="head-bar__yt-icon">
+          <YTMobileIcon />
+        </a>
+        <div className="head-bar__title-icon-container">
           {/* Text or Input according to the user action */}
           <h1 className="head-bar__title">Title</h1>
+          <a href="#!" className="head-bar__search-icon">
+            <SearchIcon />
+          </a>
         </div>
-        <a href="#!" className="head-bar__search-icon">
-          <SearchIcon />
-        </a>
       </header>
     )
   }
