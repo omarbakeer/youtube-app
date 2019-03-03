@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { ReactComponent as YTMobileIcon } from '../../images/youtube.svg'
-import { ReactComponent as SearchIcon } from '../../images/search.svg'
-import './style.scss'
+import { ReactComponent as YTMobileIcon } from '../images/youtube.svg'
+import { ReactComponent as SearchIcon } from '../images/search.svg'
+import './head-bar.scss'
 
 export default class Header extends Component {
   render() {

@@ -1,4 +1,6 @@
 .mob-filter {
+  display: flex;
+  justify-content: flex-start;
   padding: 0.5rem;
   border: 1px solid hsla(0, 0%, 53.3%, 0.4);
 }
