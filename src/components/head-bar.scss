@@ -33,6 +33,21 @@ $mobile-icons-color: white;
   font-size: 1.1rem;
 }
 
+.head-bar__input {
+  flex: 1;
+  height: 1.7rem;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 2px;
+}
+
+.head-bar__clear-input-icon {
+  cursor: pointer;
+  position: relative;
+  color: #888888;
+  right: 1.4rem;
+}
+
 .head-bar__search-icon {
   margin-right: 0.5rem;
   @include icon-dim-and-color($search-icon-dimensions);
