@@ -13,12 +13,12 @@ export default class VideoCard extends Component {
           />
           <span className="video-card__thumbnail-time">2:30</span>
         </figure>
-        <aside className="video-card__description">
-          <h4 className="video-card__description-title">
+        <aside className="card__description">
+          <h4 className="card__description-title">
             Video title dsadsa d sadasdas
           </h4>
-          <h5 className="video-card__description-subtitle">channel name</h5>
-          <h6 className="video-card__description-subtitle">29K views</h6>
+          <h5 className="card__description-subtitle">channel name</h5>
+          <h5 className="card__description-subtitle">29K views</h5>
         </aside>
       </article>
     )

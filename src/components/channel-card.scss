@@ -1,0 +1,19 @@
+@import './card';
+
+.channel-card {
+  cursor: pointer;
+  padding: 0.6rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* <-- Start of thumbnail styling --> */
+
+.channel-card__thumbnail {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+
+/* <-- End of thumbnail styling --> */

@@ -1,0 +1,27 @@
+/* <-- Start of description styling --> */
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50vw;
+  margin: 0 1rem;
+  line-height: 1.25;
+}
+
+.card__description-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-height: 3.75em;
+  overflow: hidden;
+}
+/* Subtitle represent channel name and # of views */
+.card__description-subtitle {
+  color: rgb(139, 136, 136);
+  font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* <-- End of description styling --> */

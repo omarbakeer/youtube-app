@@ -1,4 +1,4 @@
-@import '../styles/flex-box';
+@import './card';
 
 .video-card {
   cursor: pointer;
@@ -21,8 +21,8 @@
 
 .video-card__thumbnail-time {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0.6rem;
+  right: 0.6rem;
   background-color: hsla(0, 0%, 6.7%, 0.8);
   color: #eee;
   padding: 1px 4px;
@@ -31,31 +31,3 @@
 }
 
 /* <-- End of thumbnail styling --> */
-
-/* <-- Start of description styling --> */
-
-.video-card__description {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 50vw;
-  margin: 0 1rem;
-  line-height: 1.25;
-}
-
-.video-card__description-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  max-height: 3.75em;
-  overflow: hidden;
-}
-/* Subtitle represent channel name and # of views */
-.video-card__description-subtitle {
-  color: rgb(139, 136, 136);
-  font-weight: normal;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-/* <-- Start of description styling --> */
