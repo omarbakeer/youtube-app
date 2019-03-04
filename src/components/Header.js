@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { ReactComponent as YTMobileIcon } from '../images/youtube.svg'
 import { ReactComponent as SearchIcon } from '../images/search.svg'
 import { MdClose } from 'react-icons/md'
 import './head-bar.scss'
 
 export default class Header extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    handleInputChange: PropTypes.func.isRequired,
+    submitSearchReq: PropTypes.func.isRequired
+  }
   state = {
     isSearching: false
   }
+
   render() {
     const { isSearching } = this.state
     return (
@@ -20,16 +27,29 @@ export default class Header extends Component {
           {isSearching ? (
             <React.Fragment>
               <input
+                className="head-bar__input"
                 type="text"
                 name="searchInput"
-                className="head-bar__input"
+                value={this.props.title}
+                onChange={this.props.handleInputChange}
               />
-              <MdClose className="head-bar__clear-input-icon" />
+              <MdClose
+                className="head-bar__clear-input-icon"
+                onClick={() => this.setState({ isSearching: false })}
+              />
             </React.Fragment>
           ) : (
-            <h1 className="head-bar__title">Title</h1>
+            <h1 className="head-bar__title">{this.props.title}</h1>
           )}
-          <a href="#!" className="head-bar__search-icon">
+          <a
+            href="#!"
+            className="head-bar__search-icon"
+            onClick={
+              isSearching
+                ? this.props.submitSearchReq
+                : () => this.setState({ isSearching: true })
+            }
+          >
             <SearchIcon />
           </a>
         </div>

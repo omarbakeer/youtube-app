@@ -3,19 +3,22 @@ import './channel-card.scss'
 
 export default class VideoCard extends Component {
   render() {
+    const { channleName, thumbnail, videoCount, subscriberCount } = this.props
     return (
       <article className="channel-card">
         <figure>
           <img
-            src="https://i.ytimg.com/vi/Ks-_Mh1QhMc/mqdefault.jpg"
+            src={thumbnail}
             alt="channel-thumbnail"
             className="channel-card__thumbnail"
           />
         </figure>
         <aside className="card__description">
-          <h4 className="card__description-title">Channel Name</h4>
-          <h5 className="card__description-subtitle">146 videos</h5>
-          <h5 className="card__description-subtitle">29K subscribers</h5>
+          <h4 className="card__description-title">{channleName}</h4>
+          <h5 className="card__description-subtitle">{videoCount} videos</h5>
+          <h5 className="card__description-subtitle">
+            {subscriberCount} subscribers
+          </h5>
         </aside>
       </article>
     )
