@@ -14,7 +14,7 @@ export default class VideoCard extends Component {
             className="video-card__thumbnail-img"
           />
           <span className="video-card__thumbnail-time">
-            {parseISO8601Duration(duration)}
+            {duration ? parseISO8601Duration(duration) : '12:00'}
           </span>
         </figure>
         <aside className="card__description">

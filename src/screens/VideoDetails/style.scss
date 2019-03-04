@@ -1,0 +1,50 @@
+@import '../../styles/flex-box';
+
+.video-block__media {
+  width: 100%;
+}
+
+.video-block__details {
+  padding: 1rem 0.8rem;
+  border-bottom: 1px solid hsla(0, 0%, 53.3%, 0.4);
+  line-height: 1.25;
+}
+
+.video-block__details__title {
+  max-width: 90%;
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-height: 3.75em;
+  overflow: hidden;
+}
+/* Subtitle represent # of views */
+.video-block__details__subtitle {
+  font-size: 0.8rem;
+  color: rgb(139, 136, 136);
+  font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.video-block__details__actions-container {
+  margin-top: 1rem;
+  @extend %flex-hor-sep-bet;
+}
+
+.video-block__details__actions-group {
+  @extend %flex-hor-sep-bet;
+  align-items: flex-start;
+  color: rgb(109, 107, 107);
+}
+
+.video-block__details__actions-icon {
+  cursor: pointer;
+  margin: 0 0.3rem;
+  color: rgb(109, 107, 107);
+  &:first-of-type {
+    margin-left: 0;
+  }
+  &:nth-of-type(3) {
+    margin-right: 0;
+  }
+}

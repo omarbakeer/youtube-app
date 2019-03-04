@@ -6,10 +6,6 @@ import ChannelCard from '../../components/ChannelCard'
 import VideoCard from '../../components/VideoCard'
 
 class Home extends Component {
-  state = {
-    searchResult: []
-  }
-
   componentDidMount = () => {
     // TODO: search for spongebob
   }
