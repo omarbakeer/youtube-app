@@ -1,24 +1,5 @@
 @import './card';
 
-.video-card {
-  cursor: pointer;
-  padding: 0.6rem;
-  display: flex;
-  justify-content: flex-start;
-}
-
-/* <-- Start of thumbnail styling --> */
-
-.video-card__thumbnail {
-  position: relative;
-}
-
-.video-card__thumbnail-img {
-  width: 50vw;
-  max-width: 160px;
-  max-height: 120px;
-}
-
 .video-card__thumbnail-time {
   position: absolute;
   bottom: 0.6rem;
@@ -29,5 +10,3 @@
   border-radius: 2px;
   font-size: 0.9rem;
 }
-
-/* <-- End of thumbnail styling --> */

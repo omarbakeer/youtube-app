@@ -1,5 +1,11 @@
-/* <-- Start of description styling --> */
+.card {
+  cursor: pointer;
+  padding: 0.6rem;
+  display: flex;
+  justify-content: flex-start;
+}
 
+/* <-- Start of description styling --> */
 .card__description {
   display: flex;
   flex-direction: column;
@@ -27,3 +33,17 @@
 }
 
 /* <-- End of description styling --> */
+
+/* <-- Start of thumbnail styling --> */
+
+.card__thumbnail {
+  position: relative;
+}
+
+.card__thumbnail-img {
+  width: 50vw;
+  max-width: 160px;
+  max-height: 120px;
+}
+
+/* <-- End of thumbnail styling --> */

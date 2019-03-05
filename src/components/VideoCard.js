@@ -14,16 +14,16 @@ export default class VideoCard extends Component {
     } = this.props
     return (
       <article
-        className="video-card"
+        className="card"
         onClick={() => {
           window.location.href = `/video/${videoId}`
         }}
       >
-        <figure className="video-card__thumbnail">
+        <figure className="card__thumbnail">
           <img
             src={thumbnail}
             alt="video-thumbnail"
-            className="video-card__thumbnail-img"
+            className="card__thumbnail-img"
           />
           <span className="video-card__thumbnail-time">
             {duration ? parseISO8601Duration(duration) : '12:00'}

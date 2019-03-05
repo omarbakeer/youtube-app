@@ -1,0 +1,16 @@
+@import './card';
+
+.playlist-card__thumbnail-video-count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: hsla(0, 0%, 6.7%, 0.8);
+  color: #eee;
+  width: 45%;
+  height: 100%;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
