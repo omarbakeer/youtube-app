@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MdPlaylistPlay } from 'react-icons/md'
-import './playlist-card.scss'
+import './styles/playlist-card.scss'
 
 export default class PlaylistCard extends Component {
   render() {

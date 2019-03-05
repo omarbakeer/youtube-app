@@ -8,7 +8,7 @@ import {
 import { ReactComponent as YTMobileIcon } from '../images/youtube.svg'
 import { ReactComponent as SearchIcon } from '../images/search.svg'
 import { MdClose } from 'react-icons/md'
-import './head-bar.scss'
+import './styles/head-bar.scss'
 
 class Header extends Component {
   static propTypes = {

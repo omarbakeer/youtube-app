@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { parseISO8601Duration } from '../utils'
-import './video-card.scss'
+import './styles/video-card.scss'
 
 export default class VideoCard extends Component {
   render() {

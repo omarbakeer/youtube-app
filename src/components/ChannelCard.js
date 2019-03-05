@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './channel-card.scss'
+import './styles/channel-card.scss'
 
 export default class VideoCard extends Component {
   render() {
