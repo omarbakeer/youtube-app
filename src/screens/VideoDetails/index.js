@@ -1,24 +1,67 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { connect } from 'react-redux'
+import { getItemDetails } from '../../utils'
 import Header from '../../components/Header'
-import ChannelCard from '../../components/ChannelCard'
 import VideoCard from '../../components/VideoCard'
 import { MdThumbUp, MdThumbDown, MdAdd, MdReply, MdFlag } from 'react-icons/md'
 import './style.scss'
 
+const { REACT_APP_GOOGLE_API_KEY } = process.env
 class VideoDetails extends Component {
-  componentDidMount = () => {}
+  state = {
+    videoId: '',
+    relatedVideos: []
+  }
+  componentDidMount = async () => {
+    const { videoId } = this.props.match.params
+    const res = await getItemDetails(videoId, 'videos')
+    console.warn(res)
+    // TODO: check the player property
+    await this.getRelatedVideos(videoId)
+    this.setState({ videoId })
+  }
+
+  getRelatedVideos = async videoId => {
+    let details
+    const relatedVideos = []
+    try {
+      const res = await axios.get(
+        'https://www.googleapis.com/youtube/v3/search',
+        {
+          params: {
+            part: 'snippet',
+            type: 'video',
+            relatedToVideoId: videoId,
+            key: REACT_APP_GOOGLE_API_KEY
+          }
+        }
+      )
+      for (let item of res.data.items) {
+        details = await getItemDetails(item.id.videoId, 'videos')
+        relatedVideos.push({
+          ...item,
+          contentDetails: details.data.items[0].contentDetails
+        })
+      }
+      console.warn(res)
+      this.setState({ relatedVideos })
+    } catch (error) {
+      console.warn(error)
+    }
+  }
 
   render() {
+    const { relatedVideos, videoId } = this.state
     return (
       <main>
-        <Header title={this.props.storeObj ? this.props.storeObj.input : ''} />
+        <Header title="YouTube" />
         <div className="video-block">
-          <video
+          <iframe
             className="video-block__media"
-            controls
-            // autoPlay
-            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            src={`https://www.youtube.com/embed/${videoId}`}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
           />
 
           <div className="video-block__details">
@@ -44,11 +87,17 @@ class VideoDetails extends Component {
             </div>
           </div>
         </div>
-        {/* <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard /> */}
+        {relatedVideos &&
+          relatedVideos.map(video => (
+            <VideoCard
+              key={video.id.videoId}
+              videoId={video.id.videoId}
+              videoTitle={video.snippet.title}
+              channelName={video.snippet.channelTitle}
+              thumbnail={video.snippet.thumbnails.medium.url}
+              duration={video.contentDetails.duration}
+            />
+          ))}
       </main>
     )
   }

@@ -25,7 +25,7 @@ export const getItemDetails = async (itemId, type) => {
     return await axios.get(`https://www.googleapis.com/youtube/v3/${type}`, {
       params: {
         id: itemId,
-        part: type === 'videos' ? 'contentDetails' : 'statistics',
+        part: type === 'videos' ? 'snippet,contentDetails' : 'statistics',
         key: REACT_APP_GOOGLE_API_KEY
       }
     })

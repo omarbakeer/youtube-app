@@ -11,13 +11,14 @@ class Home extends Component {
   }
 
   render() {
+    const { storeObj } = this.props
     return (
       <main>
-        <Header title={this.props.storeObj ? this.props.storeObj.input : ''} />
+        <Header title={storeObj ? storeObj.input : ''} />
         <MobFilter />
 
-        {this.props.storeObj.results &&
-          this.props.storeObj.results.map(item =>
+        {storeObj.results &&
+          storeObj.results.map(item =>
             item.statistics ? (
               <ChannelCard
                 key={item.id.channelId}
@@ -29,6 +30,7 @@ class Home extends Component {
             ) : item.contentDetails ? (
               <VideoCard
                 key={item.id.videoId}
+                videoId={item.id.videoId}
                 videoTitle={item.snippet.title}
                 channelName={item.snippet.channelTitle}
                 thumbnail={item.snippet.thumbnails.medium.url}
