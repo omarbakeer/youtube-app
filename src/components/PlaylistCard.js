@@ -4,30 +4,29 @@ import './styles/playlist-card.scss'
 
 export default class PlaylistCard extends Component {
   render() {
-    const { videoId, thumbnail, videoTitle, channelName } = this.props
+    const {
+      playlistTitle,
+      playlistId,
+      itemCount,
+      thumbnail,
+      channelName
+    } = this.props
     return (
-      <article
-        className="card"
-        onClick={() => {
-          window.location.href = `/video/${videoId}`
-        }}
-      >
+      <article className="card">
         <figure className="card__thumbnail">
           <img
-            src="https://www.rishabhsoft.com/wp-content/uploads/2011/05/Entry-and-Exit-Criteria-for-Testing.jpg"
+            src={thumbnail}
             alt="video-thumbnail"
             className="card__thumbnail-img"
           />
           <div className="playlist-card__thumbnail-video-count">
-            <h6>54</h6>
+            <h6>{itemCount}</h6>
             <MdPlaylistPlay />
           </div>
         </figure>
         <aside className="card__description">
-          <h4 className="card__description-title">
-            dausdh bausd hsaudklh saudkhjdsahd jksadn
-          </h4>
-          <h5 className="card__description-subtitle">sajdhja ksdh ssakjdhj</h5>
+          <h4 className="card__description-title">{playlistTitle}</h4>
+          <h5 className="card__description-subtitle">{channelName}</h5>
         </aside>
       </article>
     )

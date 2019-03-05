@@ -28,7 +28,9 @@ export const getItemDetails = async (itemId, type) => {
         part:
           type === 'videos'
             ? 'snippet,contentDetails,statistics'
-            : 'statistics',
+            : type === 'channels'
+            ? 'statistics'
+            : 'contentDetails',
         key: REACT_APP_GOOGLE_API_KEY
       }
     })

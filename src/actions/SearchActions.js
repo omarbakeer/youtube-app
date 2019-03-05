@@ -40,8 +40,12 @@ export const submitSearchRequest = query => {
             contentDetails: details.data.items[0].contentDetails,
             statistics: details.data.items[0].statistics
           })
-        } else {
-          console.warn('it should be a list!!!')
+        } else if (item.id.hasOwnProperty('playlistId')) {
+          details = await getItemDetails(item.id.playlistId, 'playlists')
+          searchResult.push({
+            ...item,
+            contentDetails: details.data.items[0].contentDetails
+          })
         }
       }
       dispatch({

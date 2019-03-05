@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import MobFilter from './components/Filter/Filter.mob'
 import ChannelCard from '../../components/ChannelCard'
 import VideoCard from '../../components/VideoCard'
+import PlaylistCard from '../../components/PlaylistCard'
 
 class Home extends Component {
   componentDidMount = () => {
@@ -17,7 +18,6 @@ class Home extends Component {
       <main>
         <Header title={storeObj ? storeObj.input : ''} />
         <MobFilter />
-
         {storeObj.results &&
           storeObj.results.map(item =>
             item.id.hasOwnProperty('channelId') ? (
@@ -37,6 +37,15 @@ class Home extends Component {
                 thumbnail={item.snippet.thumbnails.medium.url}
                 duration={item.contentDetails.duration}
                 viewCount={item.statistics.viewCount}
+              />
+            ) : item.id.hasOwnProperty('playlistId') ? (
+              <PlaylistCard
+                key={item.id.playlistId}
+                // playlistId={item.id.playlistId}
+                playlistTitle={item.snippet.title}
+                channelName={item.snippet.channelTitle}
+                thumbnail={item.snippet.thumbnails.medium.url}
+                itemCount={item.contentDetails.itemCount}
               />
             ) : null
           )}

@@ -18,7 +18,9 @@ class Header extends Component {
     isSearching: false,
     searchInput: ''
   }
-
+  // TODO: if you are in video details page or channel page,
+  // redirect to home page then apply the search req, so it
+  // can be shown and rendered, or basically redirect anyways
   handleOnChange = e => {
     const searchInput = e.target.value
     this.props.dispatch(handleSearchInput(searchInput))
