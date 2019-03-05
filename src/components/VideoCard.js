@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 import { parseISO8601Duration } from '../utils'
 import './video-card.scss'
 
-class VideoCard extends Component {
+export default class VideoCard extends Component {
   render() {
-    const { thumbnail, duration, videoTitle, channelName, videoId } = this.props
+    const {
+      videoId,
+      thumbnail,
+      duration,
+      videoTitle,
+      channelName,
+      viewCount
+    } = this.props
     return (
       <article
         className="video-card"
-        onClick={() => this.props.history.push(`/video/${videoId}`)}
+        onClick={() => {
+          window.location.href = `/video/${videoId}`
+        }}
       >
         <figure className="video-card__thumbnail">
           <img
@@ -24,11 +32,9 @@ class VideoCard extends Component {
         <aside className="card__description">
           <h4 className="card__description-title">{videoTitle}</h4>
           <h5 className="card__description-subtitle">{channelName}</h5>
-          <h5 className="card__description-subtitle">29K views</h5>
+          <h5 className="card__description-subtitle">{viewCount} views</h5>
         </aside>
       </article>
     )
   }
 }
-
-export default withRouter(VideoCard)

@@ -37,7 +37,8 @@ export const submitSearchRequest = query => {
           details = await getItemDetails(item.id.videoId, 'videos')
           searchResult.push({
             ...item,
-            contentDetails: details.data.items[0].contentDetails
+            contentDetails: details.data.items[0].contentDetails,
+            statistics: details.data.items[0].statistics
           })
         } else {
           console.warn('it should be a list!!!')

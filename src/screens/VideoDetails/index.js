@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
 import { getItemDetails } from '../../utils'
 import Header from '../../components/Header'
 import VideoCard from '../../components/VideoCard'
@@ -14,12 +13,11 @@ class VideoDetails extends Component {
     relatedVideos: []
   }
   componentDidMount = async () => {
+    // TODO: check the player property
     const { videoId } = this.props.match.params
     const res = await getItemDetails(videoId, 'videos')
-    console.warn(res)
-    // TODO: check the player property
     await this.getRelatedVideos(videoId)
-    this.setState({ videoId })
+    this.setState({ videoId, videoDetails: { ...res.data.items[0] } })
   }
 
   getRelatedVideos = async videoId => {
@@ -40,11 +38,10 @@ class VideoDetails extends Component {
       for (let item of res.data.items) {
         details = await getItemDetails(item.id.videoId, 'videos')
         relatedVideos.push({
-          ...item,
-          contentDetails: details.data.items[0].contentDetails
+          ...details.data.items[0]
         })
       }
-      console.warn(res)
+      console.warn(relatedVideos)
       this.setState({ relatedVideos })
     } catch (error) {
       console.warn(error)
@@ -52,7 +49,7 @@ class VideoDetails extends Component {
   }
 
   render() {
-    const { relatedVideos, videoId } = this.state
+    const { relatedVideos, videoId, videoDetails } = this.state
     return (
       <main>
         <Header title="YouTube" />
@@ -66,18 +63,20 @@ class VideoDetails extends Component {
 
           <div className="video-block__details">
             <h4 className="video-block__details__title">
-              VideoTitl sdsadnajskl dasjkldh asjkd lhasjkdhsa dasjkd sje
+              {videoDetails && videoDetails.snippet.title}
               <span className="video-block__details__subtitle">
-                {' '}
-                - 24K views
+                {' - '}
+                {videoDetails && videoDetails.statistics.viewCount} views
               </span>
             </h4>
             <div className="video-block__details__actions-container">
               <div className="video-block__details__actions-group">
                 <MdThumbUp className="video-block__details__actions-icon" />
-                <span>234</span>
+                <span>{videoDetails && videoDetails.statistics.likeCount}</span>
                 <MdThumbDown className="video-block__details__actions-icon" />
-                <span>234</span>
+                <span>
+                  {videoDetails && videoDetails.statistics.dislikeCount}
+                </span>
               </div>
               <div>
                 <MdAdd className="video-block__details__actions-icon" />
@@ -90,12 +89,13 @@ class VideoDetails extends Component {
         {relatedVideos &&
           relatedVideos.map(video => (
             <VideoCard
-              key={video.id.videoId}
-              videoId={video.id.videoId}
+              key={video.id}
+              videoId={video.id}
               videoTitle={video.snippet.title}
               channelName={video.snippet.channelTitle}
               thumbnail={video.snippet.thumbnails.medium.url}
               duration={video.contentDetails.duration}
+              viewCount={video.statistics.viewCount}
             />
           ))}
       </main>
@@ -103,8 +103,4 @@ class VideoDetails extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { storeObj: state.SearchReducer }
-}
-
-export default connect(mapStateToProps)(VideoDetails)
+export default VideoDetails

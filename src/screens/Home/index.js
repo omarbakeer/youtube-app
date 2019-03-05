@@ -12,6 +12,7 @@ class Home extends Component {
 
   render() {
     const { storeObj } = this.props
+    console.warn(storeObj)
     return (
       <main>
         <Header title={storeObj ? storeObj.input : ''} />
@@ -19,7 +20,7 @@ class Home extends Component {
 
         {storeObj.results &&
           storeObj.results.map(item =>
-            item.statistics ? (
+            item.id.hasOwnProperty('channelId') ? (
               <ChannelCard
                 key={item.id.channelId}
                 channleName={item.snippet.title}
@@ -27,7 +28,7 @@ class Home extends Component {
                 videoCount={item.statistics.videoCount}
                 subscriberCount={item.statistics.subscriberCount}
               />
-            ) : item.contentDetails ? (
+            ) : item.id.hasOwnProperty('videoId') ? (
               <VideoCard
                 key={item.id.videoId}
                 videoId={item.id.videoId}
@@ -35,6 +36,7 @@ class Home extends Component {
                 channelName={item.snippet.channelTitle}
                 thumbnail={item.snippet.thumbnails.medium.url}
                 duration={item.contentDetails.duration}
+                viewCount={item.statistics.viewCount}
               />
             ) : null
           )}
