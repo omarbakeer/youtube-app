@@ -7,9 +7,8 @@ import {
   handleSearchInput,
   submitSearchRequest
 } from '../actions/SearchActions'
-import { ReactComponent as YTMobileIcon } from '../images/youtube.svg'
-import { ReactComponent as SearchIcon } from '../images/search.svg'
-import { MdClose } from 'react-icons/md'
+import { FaYoutube } from 'react-icons/fa'
+import { MdClose, MdSearch } from 'react-icons/md'
 import './styles/head-bar.scss'
 
 class Header extends Component {
@@ -42,9 +41,7 @@ class Header extends Component {
     const { isSearching } = this.state
     return (
       <header className="head-bar">
-        <a href="#!" className="head-bar__yt-icon">
-          <YTMobileIcon />
-        </a>
+        <FaYoutube className="head-bar__yt-icon" />
         <div className="head-bar__title-icon-container">
           {/* Text or Input according to the user action */}
           {isSearching ? (
@@ -63,17 +60,14 @@ class Header extends Component {
           ) : (
             <h1 className="head-bar__title">{this.props.title}</h1>
           )}
-          <a
-            href="#!"
+          <MdSearch
             className="head-bar__search-icon"
             onClick={
               isSearching
                 ? this.sendRequest
                 : () => this.setState({ isSearching: true })
             }
-          >
-            <SearchIcon />
-          </a>
+          />
         </div>
       </header>
     )
