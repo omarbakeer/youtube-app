@@ -12,7 +12,11 @@ Navigate to the directory and install npm_modules
 `npm install`
 
 To run the app
-`npm start`
+`REACT_APP_GOOGLE_API_KEY="**{YOUR APP KEY}**" npm start`
+
+OR
+
+use the **.env** file
 
 To run test cases
 `npm run test`
