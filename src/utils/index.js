@@ -38,3 +38,19 @@ export const getItemDetails = async (itemId, type) => {
     console.log(error)
   }
 }
+
+export const formatTimeFilter = filterTime => {
+  const today = new Date()
+  switch (filterTime) {
+    case 'today':
+      return today.toISOString()
+    case 'week':
+      today.setDate(today.getDate() - 7)
+      return today.toISOString()
+    case 'month':
+      today.setDate(today.getDate() - 30)
+      return today.toISOString()
+    default:
+      return new Date(0).toISOString()
+  }
+}

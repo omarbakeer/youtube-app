@@ -1,5 +1,6 @@
 import {
   SET_LOADING_STATE,
+  SET_SEARCH_FILTERS,
   HANDLE_SEARCH_INPUT,
   SUBMIT_SEARCH_REQUEST
 } from '../actions'
@@ -7,7 +8,11 @@ import {
 const initState = {
   input: '',
   results: [],
-  isLoading: false
+  isLoading: false,
+  filters: {
+    filterType: '',
+    filterTime: null
+  }
 }
 
 const SearchReducer = (state = initState, action) => {
@@ -16,6 +21,14 @@ const SearchReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: action.isLoading
+      }
+    case SET_SEARCH_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [action.name]: action.value
+        }
       }
     case HANDLE_SEARCH_INPUT:
       return {

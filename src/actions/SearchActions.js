@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
   SET_LOADING_STATE,
+  SET_SEARCH_FILTERS,
   HANDLE_SEARCH_INPUT,
   SUBMIT_SEARCH_REQUEST
 } from './index'
@@ -15,6 +16,14 @@ export const setLoadingState = isLoading => {
   }
 }
 
+export const setSearchFilters = ({ name, value }) => {
+  return {
+    type: SET_SEARCH_FILTERS,
+    name,
+    value
+  }
+}
+
 export const handleSearchInput = payload => {
   return {
     type: HANDLE_SEARCH_INPUT,
@@ -22,7 +31,7 @@ export const handleSearchInput = payload => {
   }
 }
 
-export const submitSearchRequest = query => {
+export const submitSearchRequest = (query, filter) => {
   return async dispatch => {
     const searchResult = []
     let details
@@ -33,7 +42,13 @@ export const submitSearchRequest = query => {
           params: {
             part: 'snippet',
             q: query,
-            key: REACT_APP_GOOGLE_API_KEY
+            key: REACT_APP_GOOGLE_API_KEY,
+            type: filter.filterType
+              ? filter.filterType
+              : 'video,channel,playlist',
+            publishedAfter: filter.filterTime
+              ? filter.filterTime
+              : new Date(0).toISOString()
           }
         }
       )

@@ -16,7 +16,8 @@ class Header extends Component {
     title: PropTypes.string,
     dispatch: PropTypes.func,
     match: PropTypes.object,
-    history: PropTypes.object
+    history: PropTypes.object,
+    filterObj: PropTypes.object
   }
   state = {
     isSearching: false,
@@ -29,7 +30,9 @@ class Header extends Component {
       this.props.history.push('/')
     }
     this.props.dispatch(setLoadingState(true))
-    this.props.dispatch(submitSearchRequest(this.state.searchInput))
+    this.props.dispatch(
+      submitSearchRequest(this.state.searchInput, this.props.filterObj)
+    )
   }
 
   submitInput = e => {
@@ -86,4 +89,10 @@ class Header extends Component {
   }
 }
 
-export default withRouter(connect()(Header))
+const mapStateToProps = ({ SearchReducer }) => {
+  return {
+    filterObj: SearchReducer.filters
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Header))

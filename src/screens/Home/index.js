@@ -18,12 +18,15 @@ class Home extends Component {
 
   render() {
     const { storeObj } = this.props
+    console.warn(storeObj)
     return (
       <React.Fragment>
         <Header title={storeObj ? storeObj.input : ''} />
         <main>
           {!storeObj.isLoading ? <MobFilter /> : null}
-          {storeObj.results.length > 0 && !storeObj.isLoading ? (
+          {storeObj.results &&
+          storeObj.results.length > 0 &&
+          !storeObj.isLoading ? (
             storeObj.results.map(item =>
               item.id.hasOwnProperty('channelId') ? (
                 <ChannelCard
