@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Header from '../../components/Header'
 import MobFilter from './components/Filter/Filter.mob'
@@ -8,6 +9,9 @@ import PlaylistCard from '../../components/PlaylistCard'
 import Loading from '../../components/Loader'
 
 class Home extends Component {
+  static propTypes = {
+    storeObj: PropTypes.object
+  }
   componentDidMount = () => {
     // TODO: search for spongebob
   }

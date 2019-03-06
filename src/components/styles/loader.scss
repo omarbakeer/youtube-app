@@ -1,9 +1,13 @@
 .loader-container {
-  margin-top: 4rem;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 25%;
+  height: 75vh;
+}
+
+.loader-container p {
+  margin-top: 1rem;
 }

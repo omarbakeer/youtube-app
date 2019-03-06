@@ -1,3 +1,5 @@
+$app-bg-color: #f7f6f6;
+
 * {
   padding: 0;
   margin: 0;
@@ -11,14 +13,22 @@ html {
 body {
   padding: 0.5rem;
   font-family: Helvetica, sans-serif;
+  background-color: $app-bg-color;
 }
+
 html,
 body,
-body #root,
-body #root main {
+body #root {
   height: 100%;
 }
 
 main {
+  background-color: #fff;
   border: 1px solid rgb(196, 196, 196);
+  @media (min-width: 500px) {
+    width: 60vw;
+    margin: auto;
+    background-color: $app-bg-color;
+    border: 0;
+  }
 }

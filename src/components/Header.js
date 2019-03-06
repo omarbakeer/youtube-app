@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   setLoadingState,
@@ -13,16 +14,20 @@ import './styles/head-bar.scss'
 
 class Header extends Component {
   static propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    dispatch: PropTypes.func,
+    match: PropTypes.object,
+    history: PropTypes.object
   }
   state = {
     isSearching: false,
     searchInput: ''
   }
-  // TODO: if you are in video details page or channel page,
-  // redirect to home page then apply the search req, so it
-  // can be shown and rendered, or basically redirect anyways
+
   sendRequest = () => {
+    if (this.props.match.url.includes('video')) {
+      this.props.history.push('/')
+    }
     this.props.dispatch(setLoadingState(true))
     this.props.dispatch(submitSearchRequest(this.state.searchInput))
   }
@@ -75,4 +80,4 @@ class Header extends Component {
   }
 }
 
-export default connect()(Header)
+export default withRouter(connect()(Header))
