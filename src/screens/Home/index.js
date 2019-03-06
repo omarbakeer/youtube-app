@@ -22,8 +22,8 @@ class Home extends Component {
     return (
       <React.Fragment>
         <Header title={storeObj ? storeObj.input : ''} />
+        {!storeObj.isLoading ? <MobFilter /> : null}
         <main>
-          {!storeObj.isLoading ? <MobFilter /> : null}
           {storeObj.results &&
           storeObj.results.length > 0 &&
           !storeObj.isLoading ? (

@@ -1,8 +1,12 @@
+$border-style: 1px solid hsla(0, 0%, 53.3%, 0.4);
+
 .mob-filter {
   display: flex;
   justify-content: flex-start;
   padding: 0.5rem;
-  border-bottom: 1px solid hsla(0, 0%, 53.3%, 0.4);
+  background-color: white;
+  border-right: $border-style;
+  border-left: $border-style;
 }
 
 .mob-filter__select {
@@ -11,7 +15,7 @@
   box-sizing: border-box;
   background: rgb(247, 246, 246);
   color: #111;
-  border: 1px solid hsla(0, 0%, 53.3%, 0.4);
+  border: $border-style;
   border-radius: 2px;
   margin-right: 4px;
   padding: 10px 24px 10px 0;
