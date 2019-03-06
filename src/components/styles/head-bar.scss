@@ -3,19 +3,52 @@
 $yt-icon-dimensions: 2.5rem;
 $search-icon-dimensions: 1.5rem;
 $mobile-icons-color: white;
+$gray-icon-color: #888888;
+$yt-red-color: #e62117;
 
 @mixin icon-dim-and-color($dim) {
+  cursor: pointer;
   outline: 0;
-  fill: $mobile-icons-color;
+  color: $mobile-icons-color;
   width: $dim;
   height: $dim;
 }
 
+@mixin desktop-set-icon-color($col) {
+  @media (min-width: 500px) {
+    fill: $col;
+  }
+}
+
 .head-bar {
-  background-color: #e62117;
+  height: 3.5rem;
+  background-color: $yt-red-color;
   color: #fff;
   padding: 0.5rem;
+  z-index: 100;
   @extend %flex-hor-sep-bet;
+
+  @media (min-width: 500px) {
+    overflow: hidden;
+    color: black;
+    background-color: $mobile-icons-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 2px 1px 1px rgba(209, 207, 209, 1);
+  }
+}
+
+.header-bar__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  @media (min-width: 500px) {
+    width: 60vw;
+    margin: auto;
+  }
 }
 
 .head-bar__title-icon-container {
@@ -26,6 +59,7 @@ $mobile-icons-color: white;
 .head-bar__yt-icon {
   margin-left: 0.5rem;
   @include icon-dim-and-color($yt-icon-dimensions);
+  @include desktop-set-icon-color($yt-red-color);
 }
 
 .head-bar__title {
@@ -34,21 +68,33 @@ $mobile-icons-color: white;
 }
 
 .head-bar__input {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
   flex: 1;
   height: 1.7rem;
   margin-left: 0.5rem;
+}
+
+.head-bar__input input {
+  width: 100%;
   padding-left: 0.5rem;
   border-radius: 2px;
+  @media (min-width: 500px) {
+    border: 1px solid $gray-icon-color;
+  }
 }
 
 .head-bar__clear-input-icon {
   cursor: pointer;
   position: relative;
-  color: #888888;
+  fill: $gray-icon-color;
   right: 1.4rem;
+  top: 0.3rem;
 }
 
 .head-bar__search-icon {
   margin-right: 0.5rem;
   @include icon-dim-and-color($search-icon-dimensions);
+  @include desktop-set-icon-color($gray-icon-color);
 }

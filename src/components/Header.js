@@ -24,11 +24,17 @@ class Header extends Component {
   }
 
   sendRequest = () => {
+    this.setState({ isSearching: false })
     if (this.props.match.url.includes('video')) {
       this.props.history.push('/')
     }
     this.props.dispatch(setLoadingState(true))
     this.props.dispatch(submitSearchRequest(this.state.searchInput))
+  }
+
+  submitInput = e => {
+    e.preventDefault()
+    this.sendRequest()
   }
 
   handleOnChange = e => {
@@ -41,33 +47,39 @@ class Header extends Component {
     const { isSearching } = this.state
     return (
       <header className="head-bar">
-        <FaYoutube className="head-bar__yt-icon" />
-        <div className="head-bar__title-icon-container">
-          {/* Text or Input according to the user action */}
-          {isSearching ? (
-            <React.Fragment>
-              <input
-                className="head-bar__input"
-                type="text"
-                name="searchInput"
-                onChange={this.handleOnChange}
-              />
-              <MdClose
-                className="head-bar__clear-input-icon"
-                onClick={() => this.setState({ isSearching: false })}
-              />
-            </React.Fragment>
-          ) : (
-            <h1 className="head-bar__title">{this.props.title}</h1>
-          )}
-          <MdSearch
-            className="head-bar__search-icon"
-            onClick={
-              isSearching
-                ? this.sendRequest
-                : () => this.setState({ isSearching: true })
-            }
+        <div className="header-bar__container">
+          <FaYoutube
+            className="head-bar__yt-icon"
+            onClick={() => this.props.history.push('/')}
           />
+          <div className="head-bar__title-icon-container">
+            {/* Text or Input according to the user action */}
+            {isSearching ? (
+              <form className="head-bar__input" onSubmit={this.submitInput}>
+                <input
+                  type="text"
+                  name="searchInput"
+                  onChange={this.handleOnChange}
+                />
+                <MdClose
+                  className="head-bar__clear-input-icon"
+                  onClick={() => this.setState({ isSearching: false })}
+                />
+              </form>
+            ) : (
+              <h1 className="head-bar__title">
+                {this.props.title ? this.props.title : 'YouTube'}
+              </h1>
+            )}
+            <MdSearch
+              className="head-bar__search-icon"
+              onClick={
+                isSearching
+                  ? this.sendRequest
+                  : () => this.setState({ isSearching: true })
+              }
+            />
+          </div>
         </div>
       </header>
     )
