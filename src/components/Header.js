@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
+  setLoadingState,
   handleSearchInput,
   submitSearchRequest
 } from '../actions/SearchActions'
@@ -21,6 +22,11 @@ class Header extends Component {
   // TODO: if you are in video details page or channel page,
   // redirect to home page then apply the search req, so it
   // can be shown and rendered, or basically redirect anyways
+  sendRequest = () => {
+    this.props.dispatch(setLoadingState(true))
+    this.props.dispatch(submitSearchRequest(this.state.searchInput))
+  }
+
   handleOnChange = e => {
     const searchInput = e.target.value
     this.props.dispatch(handleSearchInput(searchInput))
@@ -28,7 +34,7 @@ class Header extends Component {
   }
 
   render() {
-    const { isSearching, searchInput } = this.state
+    const { isSearching } = this.state
     return (
       <header className="head-bar">
         <a href="#!" className="head-bar__yt-icon">
@@ -57,7 +63,7 @@ class Header extends Component {
             className="head-bar__search-icon"
             onClick={
               isSearching
-                ? () => this.props.dispatch(submitSearchRequest(searchInput))
+                ? this.sendRequest
                 : () => this.setState({ isSearching: true })
             }
           >

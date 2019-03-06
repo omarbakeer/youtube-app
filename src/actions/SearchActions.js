@@ -1,8 +1,19 @@
 import axios from 'axios'
-import { HANDLE_SEARCH_INPUT, SUBMIT_SEARCH_REQUEST } from './index'
+import {
+  SET_LOADING_STATE,
+  HANDLE_SEARCH_INPUT,
+  SUBMIT_SEARCH_REQUEST
+} from './index'
 import { getItemDetails } from '../utils'
 
 const { REACT_APP_GOOGLE_API_KEY } = process.env
+
+export const setLoadingState = isLoading => {
+  return {
+    type: SET_LOADING_STATE,
+    isLoading
+  }
+}
 
 export const handleSearchInput = payload => {
   return {
@@ -51,6 +62,10 @@ export const submitSearchRequest = query => {
       dispatch({
         type: SUBMIT_SEARCH_REQUEST,
         searchResult
+      })
+      dispatch({
+        type: SET_LOADING_STATE,
+        isLoading: false
       })
     } catch (error) {
       dispatch({

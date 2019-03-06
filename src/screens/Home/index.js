@@ -5,6 +5,7 @@ import MobFilter from './components/Filter/Filter.mob'
 import ChannelCard from '../../components/ChannelCard'
 import VideoCard from '../../components/VideoCard'
 import PlaylistCard from '../../components/PlaylistCard'
+import Loading from '../../components/Loader'
 
 class Home extends Component {
   componentDidMount = () => {
@@ -17,8 +18,8 @@ class Home extends Component {
     return (
       <main>
         <Header title={storeObj ? storeObj.input : ''} />
-        <MobFilter />
-        {storeObj.results &&
+        {!storeObj.isLoading ? <MobFilter /> : null}
+        {storeObj.results.length > 0 && !storeObj.isLoading ? (
           storeObj.results.map(item =>
             item.id.hasOwnProperty('channelId') ? (
               <ChannelCard
@@ -48,7 +49,10 @@ class Home extends Component {
                 itemCount={item.contentDetails.itemCount}
               />
             ) : null
-          )}
+          )
+        ) : (
+          <Loading />
+        )}
       </main>
     )
   }
