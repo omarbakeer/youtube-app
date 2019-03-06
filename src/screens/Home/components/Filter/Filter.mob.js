@@ -26,15 +26,15 @@ class MobFilter extends Component {
     return (
       <section className="mob-filter" onChange={this.handleOnChange}>
         <select name="filterType" className="mob-filter__select">
-          <option defaultValue="all">all</option>
-          <option value="channel">channel</option>
-          <option value="playlist">play list</option>
+          <option defaultValue="all">All</option>
+          <option value="channel">Channel</option>
+          <option value="playlist">Play list</option>
         </select>
         <select name="filterTime" className="mob-filter__select">
-          <option defaultValue="anytime">any time</option>
-          <option value="today">today</option>
-          <option value="week">this week</option>
-          <option value="month">this month</option>
+          <option defaultValue="anytime">Any time</option>
+          <option value="today">Today</option>
+          <option value="week">This week</option>
+          <option value="month">This month</option>
         </select>
       </section>
     )

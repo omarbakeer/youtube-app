@@ -41,6 +41,7 @@ export const submitSearchRequest = (query, filter) => {
         {
           params: {
             part: 'snippet',
+            maxResults: 25,
             q: query,
             key: REACT_APP_GOOGLE_API_KEY,
             type: filter.filterType

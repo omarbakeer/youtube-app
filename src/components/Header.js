@@ -48,6 +48,7 @@ class Header extends Component {
 
   render() {
     const { isSearching } = this.state
+    const { title } = this.props
     return (
       <header className="head-bar">
         <div className="header-bar__container">
@@ -75,7 +76,7 @@ class Header extends Component {
               </form>
             ) : (
               <h1 className="head-bar__title" data-testid="title">
-                {this.props.title ? this.props.title : 'YouTube'}
+                {title ? title : 'YouTube'}
               </h1>
             )}
             <MdSearch

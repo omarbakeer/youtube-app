@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { getItemDetails } from '../../utils'
+import { getItemDetails, decodeString } from '../../utils'
 import Header from '../../components/Header'
 import VideoCard from '../../components/VideoCard'
 import { MdThumbUp, MdThumbDown, MdAdd, MdReply, MdFlag } from 'react-icons/md'
@@ -58,7 +58,7 @@ class VideoDetails extends Component {
             className="video-block__media"
             src={`https://www.youtube.com/embed/${videoId}`}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            title="video details"
           />
 
           <div className="video-block__details">
@@ -91,8 +91,8 @@ class VideoDetails extends Component {
             <VideoCard
               key={video.id}
               videoId={video.id}
-              videoTitle={video.snippet.title}
-              channelName={video.snippet.channelTitle}
+              videoTitle={decodeString(video.snippet.title)}
+              channelName={decodeString(video.snippet.channelTitle)}
               thumbnail={video.snippet.thumbnails.medium.url}
               duration={video.contentDetails.duration}
               viewCount={video.statistics.viewCount}

@@ -4,7 +4,7 @@ import { MdPlaylistPlay } from 'react-icons/md'
 import './styles/playlist-card.scss'
 
 const PlaylistCard = props => {
-  const { playlistTitle, playlistId, itemCount, thumbnail, channelName } = props
+  const { playlistTitle, itemCount, thumbnail, channelName } = props
   return (
     <article className="card">
       <figure className="card__thumbnail">

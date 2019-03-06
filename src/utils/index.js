@@ -60,6 +60,12 @@ export const formatTimeFilter = filterTime => {
   }
 }
 
+export const decodeString = Str => {
+  var txt = document.createElement('textarea')
+  txt.innerHTML = Str
+  return txt.value
+}
+
 // <-- Testing utility for redux -->
 
 export const renderWithRedux = (
