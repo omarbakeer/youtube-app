@@ -58,7 +58,11 @@ class Header extends Component {
           <div className="head-bar__title-icon-container">
             {/* Text or Input according to the user action */}
             {isSearching ? (
-              <form className="head-bar__input" onSubmit={this.submitInput}>
+              <form
+                className="head-bar__input"
+                onSubmit={this.submitInput}
+                data-testid="search-input"
+              >
                 <input
                   type="text"
                   name="searchInput"
@@ -70,12 +74,13 @@ class Header extends Component {
                 />
               </form>
             ) : (
-              <h1 className="head-bar__title">
+              <h1 className="head-bar__title" data-testid="title">
                 {this.props.title ? this.props.title : 'YouTube'}
               </h1>
             )}
             <MdSearch
               className="head-bar__search-icon"
+              data-testid="search-icon"
               onClick={
                 isSearching
                   ? this.sendRequest

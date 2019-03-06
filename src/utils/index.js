@@ -1,4 +1,9 @@
+import React from 'react'
 import axios from 'axios'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from '../reducers/'
+import { render } from 'react-testing-library'
 const { REACT_APP_GOOGLE_API_KEY } = process.env
 
 // Reference
@@ -52,5 +57,20 @@ export const formatTimeFilter = filterTime => {
       return today.toISOString()
     default:
       return new Date(0).toISOString()
+  }
+}
+
+// <-- Testing utility for redux -->
+
+export const renderWithRedux = (
+  ui,
+  { initialState, store = createStore(rootReducer, initialState) } = {}
+) => {
+  return {
+    ...render(<Provider store={store}>{ui}</Provider>),
+    // adding `store` to the returned utilities to allow us
+    // to reference it in our tests (just try to avoid using
+    // this to test implementation details).
+    store
   }
 }
